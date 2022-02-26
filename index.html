@@ -2,7 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Curso de JavaScript</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="./images/pizza2.png" />
+    <title>Curso de JavaScript Pizzas Delivery</title>
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Hepta+Slab:400,700|Lato:400,700&display=swap" rel="stylesheet">
@@ -32,30 +35,41 @@
         <div class="menu-openner"><span>0</span>🛒</div>
     </header>
     <main>
-        <h1>Pizzas</h1>
+        <h1>Sabores</h1>
         <div class="pizza-area"></div>
     </main>
     <aside>
-        <div class="cart--area">
+        <form action="" method="post" class="cart--area">
             <div class="menu-closer">❌</div>
             <h1>Suas Pizzas</h1>
-            <div class="cart"></div>
+            <div class="cart" name="detailsp"></div>
             <div class="cart--details">
                 <div class="cart--totalitem subtotal">
                     <span>Subtotal</span>
-                    <span>R$ --</span>
+                    <span name="subtotal">R$ --</span>
                 </div>
                 <div class="cart--totalitem desconto">
                     <span>Desconto (-10%)</span>
-                    <span>R$ --</span>
+                    <span name="desconto">R$ --</span>
                 </div>
                 <div class="cart--totalitem total big">
                     <span>Total</span>
-                    <span>R$ --</span>
+                    <span name="total">R$ --</span>
                 </div>
-                <div class="cart--finalizar">Finalizar a compra</div>
+                <div class="cart--info-client">
+                        <h1>Preencha seus dados</h1>
+                        <label>
+                            Nome:
+                            <input type="text" name="nome" id="nome" required/>
+                            E-mail:
+                            <input type="email" name="email" id="email" required/>
+                            Telefone: 
+                            <input type="number" name="telefone" id="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" required/>
+                        </label>
+                </div>
+                <div type="submit" class="cart--finalizar">Finalizar a compra</div>
             </div>
-        </div>
+        </form>
     </aside>
     <div class="pizzaWindowArea">
         <div class="pizzaWindowBody">

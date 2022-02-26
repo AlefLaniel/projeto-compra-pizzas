@@ -12,7 +12,7 @@ pizzaJson.map((item, index)=>{
    
     pizzaItem.setAttribute('data-key', index);
     pizzaItem.querySelector('.pizza-item--img img').src = item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
+    pizzaItem.querySelector('.pizza-item--price').innerHTML = `A partir de ${item.price[0].toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     pizzaItem.querySelector('a').addEventListener('click', (e)=>{
@@ -24,13 +24,16 @@ pizzaJson.map((item, index)=>{
         c('.pizzaBig img').src = pizzaJson[key].img;
         c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
         c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
-        c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
+        c('.pizzaInfo--actualPrice').innerHTML = `${pizzaJson[key].price[2].toLocaleString("pt-br", { style: "currency", currency:"BRL"})}`;
         c('.pizzaInfo--size.selected').classList.remove('selected');
         cl('.pizzaInfo--size').forEach((size, sizeIndex)=>{
             if(sizeIndex == 2){
                 size.classList.add('selected');
             }
-            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
+        });
+
+        cl('.pizzaInfo--size').forEach((sizeItem, sizeIndex)=> {
+            sizeItem.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
         });
 
         c('.pizzaInfo--qt').innerHTML = modalQt;
@@ -66,11 +69,18 @@ c('.pizzaInfo--qtmais').addEventListener('click', ()=>{
     c('.pizzaInfo--qt').innerHTML = modalQt;
 });
 
-cl('.pizzaInfo--size').forEach((size, sizeIndex)=>{
-    size.addEventListener('click', (e)=>{
-        c('.pizzaInfo--size.selected').classList.remove('selected');
-        size.classList.add('selected');
+function inputClass(event){
+    let clickedItem = event.currentTarget;
+    let dataKey = clickedItem.getAttribute('data-key')
+    cl('.pizzaInfo--size').forEach((element)=>{
+        element.classList.remove("selected");
     });
+    clickedItem.classList.add("selected");
+    c('.pizzaInfo--pricearea .pizzaInfo--actualPrice').innerHTML = `${pizzaJson[modalKey].price[dataKey].toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`;
+}
+
+cl('.pizzaInfo--size').forEach((size, sizeIndex)=>{
+    size.addEventListener('click', inputClass);
 });
 
 c('.pizzaInfo--addButton').addEventListener('click', ()=>{
@@ -85,6 +95,7 @@ c('.pizzaInfo--addButton').addEventListener('click', ()=>{
         cart.push({
             identifier,
             id:pizzaJson[modalKey].id,
+            price: pizzaJson[modalKey].price[size],
             size,
             qt: modalQt
         });
@@ -119,7 +130,7 @@ function updateCart() {
 
             let pizzaItem = pizzaJson.find( (item)=> item.id == cart[i].id );
 
-            subtotal += pizzaItem.price * cart[i].qt;
+            subtotal += cart[i].price * cart[i].qt;
 
             let cartItem = c('.models .cart--item').cloneNode(true);
 

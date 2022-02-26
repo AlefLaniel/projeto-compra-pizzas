@@ -8,7 +8,9 @@ body {
     display:flex;
     margin:0;
     min-height:100vh;
+    overflow: hidden;
 }
+
 .models {
     display:none;
 }
@@ -19,17 +21,42 @@ header {
     top:0;
     right:0;
     height:60px;
-    background-color:#399ade;
-    display:none;
+    background-color:#388bc5;
     justify-content: flex-end;
     align-items: center;
 }
+
+main, aside {
+    margin-top: 90px;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+main::-webkit-scrollbar, aside::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  main::-webkit-scrollbar-track, aside::-webkit-scrollbar-track {
+    background: #5b7080;        /* color of the tracking area */
+  }
+  
+  main::-webkit-scrollbar-thumb,  aside::-webkit-scrollbar-thumb{
+    background-color: #388bc5;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #388bc5;  /* creates padding around scroll thumb */
+  }
+  
+aside{
+    padding-bottom: 50px;
+}
+
 .menu-openner {
     margin-right: 15px;
     font-size: 26px;
     background-color: #a9dcff;
     padding: 5px 20px;
     border-radius: 5px;
+    display:none;
 }
 .menu-openner span {
     margin-right:10px;
@@ -331,6 +358,42 @@ h1 {
     background-color:#35af4a;
 }
 
+.cart--info-client{
+    display: flex;
+    width: 20vw;
+    background-color: #a1ebfd;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #a1ebfd;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.cart--info-client h1{
+    font-size:20px;
+    text-align: center;
+}
+
+.cart--info-client label{
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart--info-client label input{
+    width: 15.5vw;
+    height: 3vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
 @media (max-width:1000px) {
     .pizza-area {
         grid-template-columns: repeat(2, 1fr);
@@ -340,6 +403,7 @@ h1 {
 @media (max-width:840px) {
     body {
         flex-direction: column;
+        overflow: scroll;
     }
     .pizza-area {
         display:block;
@@ -350,6 +414,11 @@ h1 {
     header {
         display:flex;
     }
+
+    main, aside{
+        margin-top: 60px;
+    }
+
     main {
         padding-top:60px;
     }
@@ -361,6 +430,7 @@ h1 {
         right:0;
         top:0;
         bottom:0;
+        padding-bottom: 60px;
         transition: all ease .2s;
     }
     aside.show {
@@ -370,6 +440,9 @@ h1 {
         width:100vw;
     }
 
+    .menu-openner{
+        display:flex;
+    }
     .menu-closer {
         display:block;
     }
@@ -420,5 +493,17 @@ h1 {
     }
     .pizzaInfo--cancelMobileButton {
         display:block;
+    }
+
+    .cart--info-client{
+        width: 70vw;
+    }
+
+    .cart--info-client h1{
+        font-size: 18px;
+    }
+
+    .cart--info-client label input{
+        width: 55vw;    
     }
 }
