@@ -27,23 +27,13 @@ header {
 }
 
 main, aside {
-    margin-top: 90px;
+    margin-top: 60px;
     overflow-y: scroll;
     height: 100vh;
 }
 
 main::-webkit-scrollbar, aside::-webkit-scrollbar {
-    width: 12px;               /* width of the entire scrollbar */
-  }
-  
-  main::-webkit-scrollbar-track, aside::-webkit-scrollbar-track {
-    background: #5b7080;        /* color of the tracking area */
-  }
-  
-  main::-webkit-scrollbar-thumb,  aside::-webkit-scrollbar-thumb{
-    background-color: #388bc5;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid #388bc5;  /* creates padding around scroll thumb */
+    display: none;             /* width of the entire scrollbar */
   }
   
 aside{
