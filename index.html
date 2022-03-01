@@ -39,7 +39,7 @@
         <div class="pizza-area"></div>
     </main>
     <aside>
-        <form action="" method="post" class="cart--area">
+        <form action="" method="post" class="cart--area" onSubmit="handleFormSubmit(event)">
             <div class="menu-closer">❌</div>
             <h1>Suas Pizzas</h1>
             <div class="cart" name="detailsp"></div>
@@ -57,17 +57,28 @@
                     <span name="total">R$ --</span>
                 </div>
                 <div class="cart--info-client">
-                        <h1>Preencha seus dados</h1>
+                        <h1>Dados Pessoais</h1>
                         <label>
                             Nome:
                             <input type="text" name="nome" id="nome" required/>
                             E-mail:
                             <input type="email" name="email" id="email" required/>
-                            Telefone: 
-                            <input type="number" name="telefone" id="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" required/>
+                            Celular(se possivel o zap): 
+                            <input type="text" name="telefone" id="telefone" size="21" maxlength="15" onkeypress="mascaraTel(this)" required>
+                        </label>
+                        <h1>Endereço: </h1>
+                        <label>
+                            Rua:
+                            <input type="text" name="rua" id="rua"/>
+                            Nº:
+                            <input type="number" name="numerocasa" id="numerocasa"/>
+                            Complemento:
+                            <input type="text" name="complemento" id="complemento"/>
+                            CEP:
+                            <input type="text" name="cep" id="cep" size="10" maxlength="9" onkeypress="mascaraCEP(this)" required/>
                         </label>
                 </div>
-                <div type="submit" class="cart--finalizar">Finalizar a compra</div>
+                <input type="submit" class="cart--finalizar" value="Finalizar a compra"/>
             </div>
         </form>
     </aside>

@@ -182,3 +182,91 @@ function updateCart() {
         c('aside').style.left = '100vw';
     }
 }
+
+
+// Mascaras de inputs
+function mascaraTel(telefone){ 
+    if(telefone.value.length == 0)
+        telefone.value = '(' + telefone.value; 
+    if(telefone.value.length == 3)
+        telefone.value = telefone.value + ') '; 
+
+    if(telefone.value.length == 10)
+        telefone.value = telefone.value + '-';
+
+}
+
+function mascaraCEP(cep) {
+    if(cep.value.length == 5)
+        cep.value = cep.value + '-';
+
+}
+
+// Requisição para o email
+let inputDetailsp = document.getElementsByName('detailsp');
+let inputSubtotal = document.getElementsByName('subtotal');
+let inputDesconto = document.getElementsByName('desconto');
+let inputTotal = document.getElementsByName('total');
+let inputNome = document.getElementsByName('nome');
+let inputEmail = document.getElementsByName('email');
+let inputTelefone = document.getElementsByName('telefone');
+let inputRua = document.getElementsByName('rua');
+let inputNumeroCasa = document.getElementsByName('numerocasa');
+let inputComplemento = document.getElementsByName('complemento');
+let inputCep = document.getElementsByName('cep');
+
+
+
+
+function send(campos){
+    fetch("http://localhost:3030/send", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(campos),
+})
+  .then((response) => response.json())
+  .then((campos) => {
+    console.log("Success:", campos);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+}
+
+function handleFormSubmit(event){  
+    event.preventDefault()
+    
+    const detailsp = inputDetailsp[0].value;
+    const subtotal = inputSubtotal[0].value;
+    const desconto = inputDesconto[0].value;
+    const total = inputTotal[0].value;
+    const nome  = inputNome[0].value;
+    const email  = inputEmail[0].value;
+    const telefone = inputTelefone[0].value;
+    const rua = inputRua[0].value;
+    const numerocasa = inputNumeroCasa[0].value;
+    const complemento = inputComplemento[0].value;
+    const cep = inputCep[0].value;
+    const campos ={
+        detailsp: detailsp,
+        subtotal: subtotal,
+        desconto: desconto,
+        total: total,
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        rua: rua,
+        numerocasa: numerocasa,
+        complemento: complemento,
+        cep: cep
+    }
+    console.log(campos); 
+    send(campos);
+    /*
+    setTimeout(function(){
+      window.location.href = "https://anuscabarros.com.br/obrigado";
+    }, 1500);
+    */
+  }
