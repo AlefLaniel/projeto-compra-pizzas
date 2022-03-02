@@ -238,10 +238,10 @@ function send(campos){
 function handleFormSubmit(event){  
     event.preventDefault()
     
-    const detailsp = inputDetailsp[0].value;
-    const subtotal = inputSubtotal[0].value;
-    const desconto = inputDesconto[0].value;
-    const total = inputTotal[0].value;
+    const detailsp = inputDetailsp[0].innerText;
+    const subtotal = inputSubtotal[0].innerText;
+    const desconto = inputDesconto[0].innerText;
+    const total = inputTotal[0].innerText;
     const nome  = inputNome[0].value;
     const email  = inputEmail[0].value;
     const telefone = inputTelefone[0].value;
@@ -262,11 +262,11 @@ function handleFormSubmit(event){
         complemento: complemento,
         cep: cep
     }
-    console.log(campos); 
+    
     send(campos);
     /*
     setTimeout(function(){
       window.location.href = "https://anuscabarros.com.br/obrigado";
     }, 1500);
-    */
+    */ 
   }
