@@ -101,19 +101,13 @@ app.post('/send', (req, res, next) => {
   Endereço do Cliente: \n
   Rua - ${rua} \n Nº ${numerocasa} Complemento - ${complemento} \n CEP - ${cep} \n \n`
 
-  const dados = [];
-
-  if(dados.length > 0){
-    dados.push({mensagem})
-  }else{
-    dados.push({mensagem})
-  }
-
+  /*
   fs.writeFile('./arquivos/DadosUsuários.docx', mensagem,{enconding:'utf-8',flag: 'a'}, function (err) {
     if (err) throw err;
     console.log('Arquivo salvo!');
 });
 
+*/
   require("./nodemail")(detailsp, subtotal, desconto, total, email, nome, telefone, rua, numerocasa, complemento, cep)
       .then(response => {
         res.json(response)

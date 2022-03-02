@@ -216,28 +216,26 @@ let inputComplemento = document.getElementsByName('complemento');
 let inputCep = document.getElementsByName('cep');
 
 
+async function send(campos) {
 
+    let body = new FormData();
+    body.append('Dados', campos);
 
-function send(campos){
-    fetch("http://localhost:3030/send", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(campos),
-})
-  .then((response) => response.json())
-  .then((campos) => {
-    console.log("Success:", campos);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+    let req = await fetch('http://localhost:3030/send',{
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+
+    alert('Enviou..!');
+    console.log("Informações da requisição", req);
 }
 
 function handleFormSubmit(event){  
-    event.preventDefault()
-    
+    preventDefault();
+
     const detailsp = inputDetailsp[0].innerText;
     const subtotal = inputSubtotal[0].innerText;
     const desconto = inputDesconto[0].innerText;
