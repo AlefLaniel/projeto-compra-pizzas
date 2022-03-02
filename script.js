@@ -215,13 +215,11 @@ let inputNumeroCasa = document.getElementsByName('numerocasa');
 let inputComplemento = document.getElementsByName('complemento');
 let inputCep = document.getElementsByName('cep');
 
-
 async function send(campos) {
 
-    let body = new FormData();
-    body.append('Dados', campos);
+    let body = campos;
 
-    let req = await fetch('http://localhost:3030/send',{
+    let req = await fetch('https://pizzaria-dev.herokuapp.com/send',{
         method: 'POST',
         body: body,
         headers: {
