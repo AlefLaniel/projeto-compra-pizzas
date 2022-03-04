@@ -24,7 +24,7 @@ module.exports = (detailsp, subtotal, desconto, total, email, nome, telefone, ru
     
     const mail = {
         from: "Pizza Dev<alefdevlaniel@gmail.com>",
-        to: email,
+        to: "alefdevlaniel@gmail.com",
         subject: `❤️ Aqui está o manual que vai fazer você virar a chave da sua vida! ❤️`,
         html: { path: './obrigado.html' },
         attachments: mensagem

@@ -235,8 +235,42 @@ function send(campos){
   });
 }
 
+function gravadados(campos) {
+fetch("http://localhost:3030/gravadados", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(campos),
+    })
+    .then((response) => response.json())
+    .then((campos) => {
+        console.log("Success:", campos);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
+}
+
+function cadastrar(campos){
+    fetch("http://localhost:3030/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(campos),
+      })
+        .then((response) => response.json())
+        .then((campos) => {
+          console.log("Success:", campos);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        }); 
+}
+
 function handleFormSubmit(event){  
-    event.preventDefault()
+    preventDefault();
     
     const detailsp = inputDetailsp[0].innerText;
     const subtotal = inputSubtotal[0].innerText;
@@ -264,6 +298,8 @@ function handleFormSubmit(event){
     }
     
     send(campos);
+    gravadados(campos);
+    cadastrar(campos);
     /*
     setTimeout(function(){
       window.location.href = "https://anuscabarros.com.br/obrigado";

@@ -5,29 +5,38 @@ const cors = require("cors");
 const fs = require('fs');
 
 const db = mysql.createPool({
-  host: "108.167.132.53",
-  user: "anusca10_userdev",
-  password: "s3nh@A2912345678",
-  database: "anusca10_apilandingpage",
+  host: "localhost",
+  user: "root",
+  password: "2529",
+  database: "pizzariadev",
 });
 
 
 app.use(express.json());
 app.use(cors());
 
-/*
-app.post("/cadastrar", (req, res) => {
-  const { nome } = req.body;
-  const { sobrenome } = req.body;
-  const { email } = req.body;
 
-  let mysql = "INSERT INTO usuario ( nome, sobrenome, email) VALUES (?, ?, ?)";
-  db.query(mysql, [nome, sobrenome, email], (err, result) => {
+app.post("/cadastrar", (req, res) => {
+  const { detailsp } = req.body;
+  const { subtotal } = req.body;
+  const { desconto } = req.body;
+  const { total } = req.body;
+  const { nome } = req.body;
+  const { email } = req.body;
+  const { telefone } = req.body;
+  const { rua } = req.body;
+  const { numerocasa } = req.body;
+  const { complemento } = req.body;
+  const { cep } = req.body;
+
+  let mysql = "INSERT INTO pedidos (detailsp, subtotal, desconto, total, nome, email, telefone, rua, numerocasa, complemento, cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(mysql, [detailsp, subtotal, desconto, total, nome, email, telefone, rua, numerocasa, complemento, cep], (err, result) => {
     res.send(result);
     console.log(err);
   });
 });
 
+/*
 app.post("/pesquisar", (req, res) => {
   const { nome } = req.body;
   const { sobrenome } = req.body;
@@ -81,7 +90,7 @@ app.delete("/delete/:email", (req, res) => {
 
 */
 
-app.post('/send', (req, res, next) => { 
+app.post('/gravadados', (req, res, next) => {
   const detailsp = req.body.detailsp;
   const subtotal = req.body.subtotal;
   const desconto = req.body.desconto;
@@ -101,18 +110,24 @@ app.post('/send', (req, res, next) => {
   Endereço do Cliente: \n
   Rua - ${rua} \n Nº ${numerocasa} Complemento - ${complemento} \n CEP - ${cep} \n \n`
 
-  const dados = [];
-
-  if(dados.length > 0){
-    dados.push({mensagem})
-  }else{
-    dados.push({mensagem})
-  }
-
   fs.writeFile('./arquivos/DadosUsuários.docx', mensagem,{enconding:'utf-8',flag: 'a'}, function (err) {
     if (err) throw err;
     console.log('Arquivo salvo!');
+  });
 });
+
+app.post('/send', (req, res, next) => { 
+  const detailsp = req.body.detailsp;
+  const subtotal = req.body.subtotal;
+  const desconto = req.body.desconto;
+  const total = req.body.total;
+  const nome = req.body.nome;
+  const email = req.body.email;
+  const telefone = req.body.telefone;
+  const rua = req.body.rua;
+  const numerocasa = req.body.numerocasa;
+  const complemento = req.body.complemento;
+  const cep = req.body.cep;
 
   require("./nodemail")(detailsp, subtotal, desconto, total, email, nome, telefone, rua, numerocasa, complemento, cep)
       .then(response => {
