@@ -1,5 +1,3 @@
-
-
 const mailer = require("nodemailer");
 
 module.exports = (detailsp, subtotal, desconto, total, email, nome, telefone, rua, numerocasa, complemento, cep) => {
@@ -43,11 +41,14 @@ module.exports = (detailsp, subtotal, desconto, total, email, nome, telefone, ru
         smtpTransport.sendMail(mail)
             .then(response => {
                 smtpTransport.close();
+                console.log("SMTP resposta:", response);
                 return resolve(response);
             })
             .catch(error => {
+                console.log("SMTP error:", error);
                 smtpTransport.close();
                 return reject(error);
+                
                 console.log(error);
             });
     })

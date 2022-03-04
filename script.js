@@ -215,24 +215,20 @@ let inputNumeroCasa = document.getElementsByName('numerocasa');
 let inputComplemento = document.getElementsByName('complemento');
 let inputCep = document.getElementsByName('cep');
 
+async function send(campos) {
 
+    let body = campos;
 
+    let req = await fetch('https://pizzaria-dev.herokuapp.com/send',{
+        method: 'POST',
+        body: body,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
 
-function send(campos){
-    fetch("http://localhost:3030/send", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(campos),
-})
-  .then((response) => response.json())
-  .then((campos) => {
-    console.log("Success:", campos);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+    alert('Enviou..!');
+    console.log("Informações da requisição", req);
 }
 
 function gravadados(campos) {
