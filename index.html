@@ -39,7 +39,7 @@
         <div class="pizza-area"></div>
     </main>
     <aside>
-        <form action="" method="post" class="cart--area" onSubmit="handleFormSubmit(event)">
+        <form class="cart--area" onSubmit="handleFormSubmit(event)">
             <div class="menu-closer">❌</div>
             <h1>Suas Pizzas</h1>
             <div class="cart" name="detailsp"></div>
@@ -78,7 +78,7 @@
                             <input type="text" name="cep" id="cep" size="10" maxlength="9" onkeypress="mascaraCEP(this)" required/>
                         </label>
                 </div>
-                <input type="submit" class="cart--finalizar" value="Finalizar a compra"/>
+                <input id="submissao" type="submit" class="cart--finalizar" value="Finalizar a compra"/>
             </div>
         </form>
     </aside>

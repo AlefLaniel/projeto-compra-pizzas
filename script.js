@@ -219,12 +219,9 @@ async function send(campos) {
 
     let body = campos;
 
-    let req = await fetch('https://pizzaria-dev.herokuapp.com/send',{
+    let req = await fetch('http://localhost:3030/send',{
         method: 'POST',
         body: body,
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
     });
 
     alert('Enviou..!');
@@ -266,7 +263,7 @@ function cadastrar(campos){
 }
 
 function handleFormSubmit(event){  
-    preventDefault();
+    event.preventDefault();
     
     const detailsp = inputDetailsp[0].innerText;
     const subtotal = inputSubtotal[0].innerText;
@@ -294,8 +291,8 @@ function handleFormSubmit(event){
     }
     
     send(campos);
-    gravadados(campos);
-    cadastrar(campos);
+    //gravadados(campos);
+    //cadastrar(campos);
     /*
     setTimeout(function(){
       window.location.href = "https://anuscabarros.com.br/obrigado";

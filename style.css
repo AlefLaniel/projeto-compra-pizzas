@@ -384,6 +384,13 @@ h1 {
     border: 1px solid #333;
 }
 
+#submissao{
+    margin-left: 3.5vw;
+    width: 75%;
+    font-size: 25px;
+    padding: 10px 5px;
+}
+
 @media (max-width:1000px) {
     .pizza-area {
         grid-template-columns: repeat(2, 1fr);
@@ -495,5 +502,9 @@ h1 {
 
     .cart--info-client label input{
         width: 55vw;    
+    }
+
+    #submissao{
+        margin-left: 12vw;
     }
 }
